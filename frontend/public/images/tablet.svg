@@ -1,0 +1,7 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#f0f0f0"/>
+  <rect x="60" y="50" width="180" height="200" rx="10" fill="#333"/>
+  <rect x="70" y="60" width="160" height="180" rx="5" fill="#666"/>
+  <circle cx="150" cy="250" r="10" fill="#666"/>
+  <text x="150" y="270" font-family="Arial" font-size="16" text-anchor="middle" fill="#333">Tablet Ultra</text>
+</svg>
