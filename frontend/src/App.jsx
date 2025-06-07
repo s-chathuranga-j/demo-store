@@ -13,7 +13,7 @@ const Navbar = ({ isLoggedIn, logout, cartItemCount }) => {
   return (
     <nav className="navbar" data-qa="navbar">
       <div className="navbar-brand" data-qa="navbar-brand">
-        <Link to="/" data-qa="brand-link">Swag Labs</Link>
+        <Link to="/" data-qa="brand-link">CJ Store</Link>
       </div>
       <div className="navbar-nav" data-qa="navbar-nav">
         {isLoggedIn ? (
@@ -319,7 +319,7 @@ const LoginPage = ({ login }) => {
           <rect width="100" height="100" rx="10" fill="#E2231A"/>
           <path d="M20 50 L40 70 L80 30" stroke="white" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-        <h2>Swag Labs</h2>
+        <h2>CJ Store</h2>
       </div>
       {error && <div className="error" data-qa="login-error">{error}</div>}
       <form onSubmit={handleSubmit} data-qa="login-form">
@@ -328,7 +328,7 @@ const LoginPage = ({ login }) => {
           <input
             type="text"
             id="email"
-            placeholder="standard_user"
+            placeholder="enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -340,14 +340,26 @@ const LoginPage = ({ login }) => {
           <input
             type="password"
             id="password"
-            placeholder="secret_sauce"
+            placeholder="enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             data-qa="login-password"
           />
         </div>
-        <button type="submit" className="btn-primary" style={{width: '100%'}} disabled={loading} data-qa="login-button">
+        <button 
+          type="submit" 
+          className="btn-primary" 
+          style={{
+            width: '100%', 
+            padding: '14px', 
+            fontSize: '1.1em',
+            marginTop: '10px',
+            fontWeight: 'bold'
+          }} 
+          disabled={loading} 
+          data-qa="login-button"
+        >
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
@@ -388,7 +400,7 @@ const RegisterPage = ({ register }) => {
           <rect width="100" height="100" rx="10" fill="#E2231A"/>
           <path d="M20 50 L40 70 L80 30" stroke="white" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-        <h2>Swag Labs</h2>
+        <h2>CJ Store</h2>
       </div>
       {error && <div className="error" data-qa="register-error">{error}</div>}
       <form onSubmit={handleSubmit} data-qa="register-form">
