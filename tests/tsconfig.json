@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "typeRoots": ["node_modules/@types", "./types"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": [
+      "reflect-metadata",
+      "jest",
+      "cypress",
+      "node",
+      "@4tw/cypress-drag-drop",
+      "cypress-real-events",
+      "@cypress/grep",
+      "cypress-recurse",
+      "cypress-axe"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "downlevelIteration": true
+  },
+  "include": ["**/*.ts", "src"]
+}

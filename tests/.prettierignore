@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+dist/
+build/
+
+# Cypress generated files
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/results/
+
+# Coverage directory
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Package files
+*.tgz
+*.zip
+
+# Environment files
+.env*
+!.env.example
+
+# Other
+.DS_Store
