@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: 'cypress-multi-reporters',
   reporterOptions: reporterConfig,
   e2e: {
-    baseUrl: process.env.CYPRESS_BASE_URL || 'https://www.saucedemo.com/',
+    baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:3000/',
     defaultCommandTimeout: 30000,
     responseTimeout: 30000,
     requestTimeout: 30000,

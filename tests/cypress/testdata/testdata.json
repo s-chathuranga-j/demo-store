@@ -1,11 +1,11 @@
 {
   "user_credentials": {
-    "valid_username": "standard_user",
+    "valid_username": "user@example.com",
     "locked_out_user": "locked_out_user",
     "problem_user": "problem_user",
     "performance_glitch_user": "performance_glitch_user",
     "error_user": "error_user",
     "visual_user": "visual_user",
-    "password": "secret_sauce"
+    "password": "password123"
   }
 }
