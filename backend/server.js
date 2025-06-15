@@ -44,11 +44,85 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+console.log('Swagger documentation generated');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+console.log('Static middleware configured for:', __dirname + '/public');
+
+// Root route to provide basic info and links
+app.get('/', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <title>Demo E-Commerce API</title>
+        <style>
+          body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+          h1 { color: #333; }
+          .link { display: inline-block; background-color: #4990e2; color: white; padding: 10px 20px; 
+                 text-decoration: none; border-radius: 4px; font-weight: bold; margin: 10px 0; }
+          .link:hover { background-color: #357abd; }
+        </style>
+      </head>
+      <body>
+        <h1>Demo E-Commerce API</h1>
+        <p>Welcome to the Demo E-Commerce API server.</p>
+        <p>Available resources:</p>
+        <ul>
+          <li><a href="/api-docs" class="link">API Documentation (Swagger UI)</a></li>
+          <li><a href="/api-docs-fallback" class="link">API Documentation (Fallback Page)</a></li>
+          <li><a href="/api-docs-json" class="link">Download API Schema (JSON)</a></li>
+        </ul>
+      </body>
+    </html>
+  `);
+});
+
+// Endpoint to download the Swagger schema as JSON
+app.get('/api-docs-json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', 'attachment; filename=swagger-schema.json');
+  res.send(swaggerDocs);
+});
+
+// Fallback route for API docs
+app.get('/api-docs-fallback', (req, res) => {
+  res.sendFile(__dirname + '/public/swagger-fallback.html');
+});
+
+// Setup Swagger UI with custom options to include download link
+const swaggerUiOptions = {
+  explorer: true,
+  swaggerOptions: {
+    docExpansion: 'list'
+  },
+  customCss: '.swagger-ui .topbar { display: flex; align-items: center; } .download-schema-link { display: block; margin: 10px 0; text-align: right; }',
+  customSiteTitle: 'Demo E-Commerce API Documentation',
+  customfavIcon: '',
+  customJs: '/custom-swagger.js',
+  // Add HTML to include a direct link to the schema
+  customCssUrl: null,
+  customfavIconUrl: null,
+  htmlTitleText: 'API Documentation',
+  customHeadContent: '<style>.download-schema-link { padding: 10px; background-color: #4990e2; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; }</style>'
+};
+
+console.log('Custom JS path:', '/custom-swagger.js', '(absolute path:', __dirname + '/public/custom-swagger.js', ')');
+
+console.log('Setting up Swagger UI at /api-docs with custom options');
+try {
+  // Use the standard setup method which is more reliable
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerUiOptions));
+  console.log('Swagger UI setup complete using standard method');
+} catch (error) {
+  console.error('Error setting up Swagger UI:', error);
+  // Fallback if Swagger UI setup fails
+  app.get('/api-docs', (req, res) => {
+    res.redirect('/api-docs-fallback');
+  });
+}
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {

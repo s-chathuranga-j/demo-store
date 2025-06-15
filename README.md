@@ -95,6 +95,13 @@ This interactive documentation allows you to:
 - See request and response formats
 - Test API endpoints directly from the browser
 
+A complete Swagger schema JSON file for all API endpoints is available at:
+```
+tests/cypress/testdata/schema.json
+```
+
+This schema file can be used for API testing and validation in Cypress tests.
+
 ### API Guide
 
 For detailed instructions on setting up and testing the API with Postman, see the [API Guide](backend/API_GUIDE.md).
@@ -128,6 +135,18 @@ demo-store/
 │   │   └── index.css
 │   ├── index.html
 │   └── package.json
+├── tests/
+│   ├── cypress/
+│   │   ├── pages/
+│   │   ├── scripts/
+│   │   ├── testbase/
+│   │   ├── testdata/
+│   │   │   ├── testdata.json
+│   │   │   └── schema.json
+│   │   └── tests/
+│   │       ├── api/
+│   │       └── ui/
+│   └── cypress.config.ts
 └── README.md
 ```
 
@@ -135,11 +154,12 @@ demo-store/
 
 This application is designed to be easily testable with:
 - UI testing with Cypress
-- API testing
+- API testing with schema validation
 - Cross-browser testing with BrowserStack
 
 ### Running Tests
 
+#### Backend Tests
 To test the database connection:
 ```
 cd backend
@@ -147,6 +167,15 @@ node test.js
 ```
 
 The backend includes a simple test script that verifies the database connection and retrieves a sample product to ensure everything is set up correctly.
+
+#### Cypress Tests
+To run Cypress tests:
+```
+cd tests
+npx cypress open
+```
+
+For API testing, you can use the Swagger schema JSON file located at `tests/cypress/testdata/schema.json` for request and response validation. This schema contains definitions for all API endpoints and can be used to validate API responses against the expected schema.
 
 ## License
 
